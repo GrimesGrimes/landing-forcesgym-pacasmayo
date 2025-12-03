@@ -21,14 +21,14 @@ root.innerHTML = `
      href="https://wa.me/51978223024"
      target="_blank"
      aria-label="Escríbenos por WhatsApp">
-    <img src="assets/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" />
+    <img src="/assets/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" />
   </a>
 
   <!-- Header -->
   <header class="site-header">
     <div class="nav-inner">
       <a href="#inicio" class="brand">
-        <img src="assets/logo1.jpg" class="brand-mark" alt="ForcesGym" />
+        <img src="/assets/logo1.jpg" class="brand-mark" alt="ForcesGym" />
         <div class="brand-text">
           <span class="brand-title">ForcesGym</span>
           <span class="brand-location">Pacasmayo</span>
@@ -95,7 +95,7 @@ root.innerHTML = `
 
         <div class="hero-media">
           <div class="hero-card">
-            <img src="assets/banner-gym.jpg" alt="Vista del gimnasio ForcesGym Pacasmayo" class="hero-img parallax-img" />
+            <img src="/assets/banner-gym.jpg" alt="Vista del gimnasio ForcesGym Pacasmayo" class="hero-img parallax-img" />
             <div class="hero-card-footer">
               <div class="hero-badge">
                 <span class="hero-badge-label">Horario general</span>
@@ -249,7 +249,7 @@ root.innerHTML = `
           </article>
 
           <article class="card">
-            <img src="assets/clases-personalizadas.jpg" alt="Entrenador guiando clase personalizada" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
+            <img src="/assets/clases-personalizadas.jpg" alt="Entrenador guiando clase personalizada" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
           </article>
         </div>
       </section>
@@ -354,7 +354,7 @@ root.innerHTML = `
           </article>
 
           <article class="card">
-            <img src="assets/campaña-nutricional.jpg" alt="Consulta nutricional en ForcesGym" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
+            <img src="/assets/campaña-nutricional.jpg" alt="Consulta nutricional en ForcesGym" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
           </article>
         </div>
       </section>
@@ -401,7 +401,7 @@ root.innerHTML = `
           </article>
 
           <article class="card">
-            <img src="assets/sala-juegos.jpg" alt="Sala de juegos para niños en ForcesGym" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
+            <img src="/assets/sala-juegos.jpg" alt="Sala de juegos para niños en ForcesGym" style="border-radius:20px;object-fit:cover;height:100%;width:100%;" />
           </article>
         </div>
       </section>
