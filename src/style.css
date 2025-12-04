@@ -99,8 +99,26 @@ img {
 }
 
 .section {
-  padding: 5rem 0 4rem;
+  padding: 3rem 0 2.5rem;
   position: relative;
+}
+
+/* Transición suave entre secciones - elimina cortes visuales */
+.section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* No aplicar el degradado en la última sección */
+.section:last-of-type::after {
+  display: none;
 }
 
 /* GSAP se encarga de animar .anim-section, aquí solo layout */
@@ -109,7 +127,7 @@ img {
 }
 
 .section-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.8rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -415,15 +433,21 @@ img {
   content: "";
   position: absolute;
   border-radius: 999px;
-  filter: blur(45px);
-  opacity: 0.55;
+  filter: blur(35px);
+  opacity: 0.45;
   z-index: -1;
+  will-change: filter;
 }
 
 .hero::before {
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(255, 213, 0, 0.9), transparent 70%);
+  background: radial-gradient(circle,
+      rgba(255, 213, 0, 0.85) 0%,
+      rgba(255, 213, 0, 0.65) 30%,
+      rgba(255, 213, 0, 0.35) 50%,
+      rgba(255, 213, 0, 0.15) 65%,
+      transparent 80%);
   top: -120px;
   left: -80px;
 }
@@ -431,7 +455,12 @@ img {
 .hero::after {
   width: 260px;
   height: 260px;
-  background: radial-gradient(circle, rgba(0, 255, 195, 0.8), transparent 70%);
+  background: radial-gradient(circle,
+      rgba(0, 255, 195, 0.75) 0%,
+      rgba(0, 255, 195, 0.55) 30%,
+      rgba(0, 255, 195, 0.3) 50%,
+      rgba(0, 255, 195, 0.12) 65%,
+      transparent 80%);
   bottom: -80px;
   right: 10%;
 }
@@ -781,7 +810,8 @@ img {
 
 /* Centrado vertical opcional para grids de 2 columnas */
 .grid--2.grid--vcenter {
-  align-items: center;  /* centra las cards dentro de la fila */
+  align-items: center;
+  /* centra las cards dentro de la fila */
 }
 
 /* En mobile (1 columna) volvemos al comportamiento normal */

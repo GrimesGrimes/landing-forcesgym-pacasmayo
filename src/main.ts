@@ -495,10 +495,7 @@ root.innerHTML = `
 
             <div class="cta-details" id="contacto">
               <p>
-                <strong>Dirección:</strong> Jirón Comandante Ladislao Espinar 123, Pacasmayo 13811.
-              </p>
-              <p>
-                <strong>Teléfono / WhatsApp:</strong> 978 223 024
+                <strong>Teléfono / WhatsApp:</strong> +51 978 223 024
               </p>
             </div>
           </div>
@@ -602,7 +599,7 @@ function initLandingPage() {
   // 5) Hero intro + word-switcher
   const heroWordEl = document.querySelector<HTMLElement>(".hero-switch-word");
   if (heroWordEl) {
-    const words = ["entrenar", "superarte", "transformarte", "cuidarte"];
+    const words = ["entrenar", "superarte", "mejorar", "cuidarte"];
     let current = 0;
     heroWordEl.textContent = words[current];
 
@@ -724,23 +721,82 @@ function initLandingPage() {
         split.chars,
         {
           opacity: 0,
-          y: 40,
+          y: 20,
         },
         {
           opacity: 1,
           y: 0,
-          ease: "power3.out",
-          stagger: 0.02, // each character animates with 0.02s delay
+          ease: "power2.out",
+          stagger: 0.015, // each character animates with 0.015s delay
           scrollTrigger: {
             trigger: title,
-            start: "top 60%",
-            end: "top 50%",
-            scrub: 0.5,
+            start: "top 70%",
+            end: "top 40%",
+            scrub: 1.2,
             toggleActions: "play reverse play reverse",
           },
         }
       );
     });
+
+  // 6.2.2 CTA Title animation - Scale Up entire phrase (dramatic entrance)
+  document
+    .querySelectorAll<HTMLElement>(".cta-title")
+    .forEach((ctaTitle) => {
+      // Set transform origin for scale effect (center of the title)
+      ctaTitle.style.transformOrigin = "center center";
+
+      // Apply reversible scale-up animation to the entire title
+      gsap.fromTo(
+        ctaTitle,
+        {
+          opacity: 0,
+          scale: 0.5,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          ease: "back.out(1.7)", // Strong elastic bounce effect
+          scrollTrigger: {
+            trigger: ctaTitle,
+            start: "top 70%",
+            end: "top 35%",
+            scrub: 1.5,
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    });
+
+  // 6.2.3 CTA Map Subtitle animation - Scale Up entire phrase
+  document
+    .querySelectorAll<HTMLElement>(".cta-map-sub")
+    .forEach((ctaMapSub) => {
+      // Set transform origin for scale effect (center of the subtitle)
+      ctaMapSub.style.transformOrigin = "center center";
+
+      // Apply reversible scale-up animation to the entire subtitle
+      gsap.fromTo(
+        ctaMapSub,
+        {
+          opacity: 0,
+          scale: 0.5,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          ease: "back.out(1.7)", // Strong elastic bounce effect
+          scrollTrigger: {
+            trigger: ctaMapSub,
+            start: "top 70%",
+            end: "top 50%",
+            scrub: 1.5,
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    });
+
   // 6.2 Reversible scroll-driven animations for section subtitles (character‑by‑character)
   document
     .querySelectorAll<HTMLElement>(".section-subtitle")
@@ -758,18 +814,18 @@ function initLandingPage() {
         split.chars,
         {
           opacity: 0,
-          y: 40,
+          y: 18,
         },
         {
           opacity: 1,
           y: 0,
-          ease: "power3.out",
-          stagger: 0.02,
+          ease: "power2.out",
+          stagger: 0.012,
           scrollTrigger: {
             trigger: subtitle,
-            start: "top 50%",
-            end: "top 60%",
-            scrub: 1,
+            start: "top 65%",
+            end: "top 35%",
+            scrub: 1.5,
             toggleActions: "play reverse play reverse",
           },
         }
@@ -793,18 +849,18 @@ function initLandingPage() {
         split.chars,
         {
           opacity: 0,
-          x: -30,
+          x: -15,
         },
         {
           opacity: 1,
           x: 0,
-          ease: 'power3.out',
-          stagger: 0.02,
+          ease: 'power2.out',
+          stagger: 0.012,
           scrollTrigger: {
             trigger: eyebrow,
-            start: 'top 80%',
-            end: 'top 60%',
-            scrub: 0.5,
+            start: 'top 75%',
+            end: 'top 45%',
+            scrub: 1.2,
             toggleActions: 'play reverse play reverse',
           },
         },
@@ -966,19 +1022,23 @@ function initLandingPage() {
 
 // Ejecutamos la inicialización una vez montado el HTML
 initLandingPage();
-ScrollTrigger.refresh();
+
+// Refresh solo la primera vez, después de que se hayan configurado todas las animaciones
+requestAnimationFrame(() => {
+  ScrollTrigger.refresh();
+});
 
 // Cuando terminen de cargar todos los recursos (F5, recarga, etc.),
-// volvemos a llevar la página al inicio y sincronizamos Lenis.
+// solo reseteamos el scroll pero NO refrescamos las animaciones
 window.addEventListener("load", () => {
-  // Un frame de delay para que el navegador haga primero su "restore"
-  requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
+  // Solo resetear scroll si realmente es necesario (evita reinicio de animaciones)
+  if (window.scrollY !== 0) {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
 
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    }
-
-    ScrollTrigger.refresh();
-  });
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      }
+    });
+  }
 });
