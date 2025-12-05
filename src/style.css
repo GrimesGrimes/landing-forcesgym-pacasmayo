@@ -1072,9 +1072,11 @@ img {
 }
 
 .cta-map-sub {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
   font-size: 0.95rem;
   color: #c2c4d0;
-  max-width: 40rem;
 }
 
 .map-wrapper {
